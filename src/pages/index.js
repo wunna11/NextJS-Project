@@ -1,5 +1,6 @@
 import { getFeaturedEvents } from '../dummy-data';
 import EventList from '../components/events/event-list';
+import NewsletterRegistration from '@/components/input/newsletter-registration';
 
 function HomePage(props) {
   // const featuredEvents = getFeaturedEvents();
@@ -7,6 +8,7 @@ function HomePage(props) {
 
   return (
     <div>
+      <NewsletterRegistration />
       <EventList items={props.events} />
     </div>
   );

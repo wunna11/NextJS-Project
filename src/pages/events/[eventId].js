@@ -6,6 +6,8 @@ import EventSummary from '../../components/event-detail/event-summary';
 import EventLogistics from '../../components/event-detail/event-logistics';
 import EventContent from '../../components/event-detail/event-content';
 import ErrorAlert from '../../components/ui/error-alert';
+import NewComment from '@/components/input/new-comment';
+import Comments from '@/components/input/comments';
 
 function EventDetailPage(props) {
   // const router = useRouter();
@@ -14,8 +16,7 @@ function EventDetailPage(props) {
   // const event = getEventById(eventId);
 
   const event = props.selectedEvent;
-
-  console.log('select event', props.selectedEvent);
+  console.log('event', event.id)
 
   if (!event) {
     return (
@@ -37,6 +38,8 @@ function EventDetailPage(props) {
       <EventContent>
         <p>{event.description}</p>
       </EventContent>
+
+      <Comments eventId={event.id} />
     </Fragment>
   );
 }
@@ -51,7 +54,7 @@ export async function getStaticProps(context) {
     props: {
       selectedEvent: event,
     },
-    revalidate: 30
+    revalidate: 30,
   };
 }
 
@@ -66,4 +69,3 @@ export async function getStaticPaths() {
     fallback: 'blocking',
   };
 }
-
