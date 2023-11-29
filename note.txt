@@ -1,0 +1,8 @@
+context
+
+create context, Provider
+
+component -> useContext(create context)
+_app.js -> <Provider>
+  <App />
+</Provider>
