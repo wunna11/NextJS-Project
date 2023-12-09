@@ -1,11 +1,10 @@
-import FeaturedPosts from '@/components/home-page/featured-posts';
-import Hero from '@/components/home-page/hero';
+import AllPosts from '@/components/posts/all-posts';
 import { APP_URL } from '@/lib/network';
-import { getFeaturedPosts } from '@/lib/posts-util';
 import Head from 'next/head';
-import { Fragment } from 'react';
 
-function HomePage(props) {
+const { Fragment } = require('react');
+
+function AllPostsPage(props) {
   const DUMMY_POSTS = [
     {
       slug: 'p1',
@@ -38,29 +37,27 @@ function HomePage(props) {
   return (
     <Fragment>
       <Head>
-        <title>Wunna' Blog</title>
+        <title>All Posts</title>
         <meta
           name="description"
-          content="I post about programming and web development."
+          content="content='A list of all programming-related tutorials and posts!'"
         />
       </Head>
-      <Hero />
-      <FeaturedPosts posts={props.posts} />
+      <AllPosts posts={props.posts} />
     </Fragment>
   );
 }
 
-export default HomePage;
+export default AllPostsPage;
 
 export async function getStaticProps() {
   const data = await fetch(APP_URL);
   const jsonData = await data.json();
   const allPosts = jsonData.posts;
-  const featuredPosts = await getFeaturedPosts(allPosts);
 
   return {
     props: {
-      posts: featuredPosts,
+      posts: allPosts,
     },
   };
 }

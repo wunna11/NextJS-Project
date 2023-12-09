@@ -8,8 +8,22 @@
     "start": "next start"
   },
   "dependencies": {
+    "dgram": "^1.0.1",
+    "dns": "^0.2.2",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.1",
+    "net": "^1.0.2",
     "next": "^13.0.7",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-markdown": "^9.0.1",
+    "react-syntax-highlighter": "^15.5.0",
+    "tls": "^0.0.1"
+  },
+  "browser": {
+    "child_process": false,
+    "fs": false,
+    "path": false,
+    "os": false
   }
 }
