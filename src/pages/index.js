@@ -1,66 +1,7 @@
-import FeaturedPosts from '@/components/home-page/featured-posts';
-import Hero from '@/components/home-page/hero';
-import { APP_URL } from '@/lib/network';
-import { getFeaturedPosts } from '@/lib/posts-util';
-import Head from 'next/head';
-import { Fragment } from 'react';
+import StartingPageContent from '../components/starting-page/starting-page';
 
-function HomePage(props) {
-  const DUMMY_POSTS = [
-    {
-      slug: 'p1',
-      title: 'NextJS 1',
-      image: 'next-js.png',
-      excerpt:
-        'Laravel is a web application framework with expressive, elegant syntax. A web framework provides a structure and starting point for creating your application, allowing you to focus on creating something amazing while we sweat the details.',
-      date: '2022-02-10',
-    },
-
-    {
-      slug: 'p2',
-      title: 'NextJS 2',
-      image: 'next-js.png',
-      excerpt:
-        'Laravel is a web application framework with expressive, elegant syntax. A web framework provides a structure and starting point for creating your application, allowing you to focus on creating something amazing while we sweat the details.',
-      date: '2022-02-10',
-    },
-
-    {
-      slug: 'p3',
-      title: 'NextJS 3',
-      image: 'next-js.png',
-      excerpt:
-        'Laravel is a web application framework with expressive, elegant syntax. A web framework provides a structure and starting point for creating your application, allowing you to focus on creating something amazing while we sweat the details.',
-      date: '2022-02-10',
-    },
-  ];
-
-  return (
-    <Fragment>
-      <Head>
-        <title>Wunna' Blog</title>
-        <meta
-          name="description"
-          content="I post about programming and web development."
-        />
-      </Head>
-      <Hero />
-      <FeaturedPosts posts={props.posts} />
-    </Fragment>
-  );
+function HomePage() {
+  return <StartingPageContent />;
 }
 
 export default HomePage;
-
-export async function getStaticProps() {
-  const data = await fetch(APP_URL);
-  const jsonData = await data.json();
-  const allPosts = jsonData.posts;
-  const featuredPosts = await getFeaturedPosts(allPosts);
-
-  return {
-    props: {
-      posts: featuredPosts,
-    },
-  };
-}

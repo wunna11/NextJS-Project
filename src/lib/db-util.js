@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 
 const url = 'mongodb://0.0.0.0:27017/';
-const dbName = 'blog';
+const dbName = 'auth-demo';
 
 export async function connectDatabase() {
   const client = await new MongoClient(url);
@@ -26,3 +26,11 @@ export async function insertDocument(client, collection, document) {
   const result = await db.collection(collection).insertOne(document);
   return result;
 }
+
+export async function getDocumentByEmail(client, collection, email) {
+  const db = client.db(dbName);
+  const allDocuments = await db.collection(collection);
+  const result = await allDocuments.findOne({ email: email });
+  return result;
+}
+
