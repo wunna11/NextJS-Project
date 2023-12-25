@@ -1,5 +1,5 @@
-import { verifyPassword } from '@/lib/auth';
-import { connectDatabase, getDocumentByEmail } from '@/lib/db-util';
+import { connectDatabase, getDocumentByEmail } from "../../../lib/db-util";
+import { verifyPassword } from '../../../lib/auth';
 
 async function handler(req, res) {
   let client;
@@ -15,9 +15,8 @@ async function handler(req, res) {
   }
 
   const { email, password } = req.body;
-
+  
   const existingUser = await getDocumentByEmail(client, 'users', email);
-
   if (!existingUser) {
     res.status(422).json({ message: 'User does not exist' });
     return;

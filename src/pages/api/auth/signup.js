@@ -1,9 +1,5 @@
-import {
-  connectDatabase,
-  getDocumentByEmail,
-  insertDocument,
-} from '@/lib/db-util';
-import { hashPassword } from '@/lib/auth';
+import { connectDatabase, getDocumentByEmail, insertDocument } from '../../../lib/db-util';
+import { hashPassword } from '../../../lib/auth';
 
 async function handler(req, res) {
   let client;

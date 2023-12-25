@@ -36,16 +36,12 @@ function AuthForm() {
     const enterEmail = emailRef.current.value;
     const enterPassword = passwordRef.current.value;
 
-    console.log('data', enterEmail, enterPassword)
-
     if (isLogin) {
       const result = await signIn('credentials', {
         redirect: false,
         email: enterEmail,
         password: enterPassword,
       });
-
-      console.log('result', result);
 
       if (!result.error) {
         // set some auth state

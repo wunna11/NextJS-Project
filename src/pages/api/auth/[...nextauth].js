@@ -1,9 +1,9 @@
-import { verifyPassword } from '@/lib/auth';
-import { connectDatabase, getDocumentByEmail } from '@/lib/db-util';
+import { connectDatabase, getDocumentByEmail } from '../../../lib/db-util';
+import { verifyPassword } from '../../../lib/auth';
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-export default NextAuth({
+export const authOptions = {
   session: {
     jwt: true,
   },
@@ -27,8 +27,6 @@ export default NextAuth({
           credentials.email
         );
 
-        console.log('user', user);
-
         if (!user) {
           throw new Error('No user found!');
         }
@@ -46,4 +44,9 @@ export default NextAuth({
       },
     }),
   ],
-});
+  callbacks: {
+    secret: process.env.NEXTAUTH_SECRET,
+  }
+};
+
+export default NextAuth(authOptions);
